@@ -1,29 +1,25 @@
 /* ==========================================================================
-   星火創世株式会社 コーポレートサイト 共通スタイル
-   ファイル構成: index.html（会社案内） / koukoku.html（電子公告）
+   星火創世株式会社 コーポレートサイト 共通スタイル（v2：複数ページ構成）
+   ファイル構成: index / business / company / contact / koukoku (.html)
    配色: 墨 #0A0908 ／ 金(明) #F0C64A ／ 金(深) #A6790E ／ 紙 #F6F5F2
    ========================================================================== */
 
 :root {
-  --sumi: #0a0908;          /* 墨 — ヘッダー・フッター背景 */
-  --sumi-soft: #171512;
-  --kin-bright: #f0c64a;    /* 明るい金 — 暗背景上のアクセント */
-  --kin-deep: #a6790e;      /* 深い金 — 明背景上のアクセント */
-  --paper: #f6f5f2;         /* 紙 — 本文背景 */
-  --ink: #1c1a17;           /* 本文文字色 */
-  --grey: #6e6a63;          /* 補助文字色 */
-  --hairline: #e2ded5;      /* 罫線 */
+  --sumi: #0a0908;
+  --kin-bright: #f0c64a;
+  --kin-deep: #a6790e;
+  --paper: #f6f5f2;
+  --ink: #1c1a17;
+  --grey: #6e6a63;
+  --hairline: #e2ded5;
   --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
   --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  --nav-h: 58px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-}
+html { -webkit-text-size-adjust: 100%; }
 
 body {
   font-family: var(--sans);
@@ -33,22 +29,26 @@ body {
   font-size: 15.5px;
   letter-spacing: 0.03em;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+main { flex: 1 0 auto; }
 
 a { color: var(--kin-deep); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--kin-deep);
+  outline: 2px solid var(--kin-bright);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
 /* ---------- ナビゲーション ---------- */
 .site-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
+  position: sticky;
+  top: 0;
   z-index: 100;
-  background: rgba(10, 9, 8, 0.92);
+  background: rgba(10, 9, 8, 0.96);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid rgba(240, 198, 74, 0.18);
 }
@@ -56,7 +56,7 @@ a:focus-visible, button:focus-visible {
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 24px;
-  height: 58px;
+  height: var(--nav-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -66,42 +66,65 @@ a:focus-visible, button:focus-visible {
   font-size: 17px;
   letter-spacing: 0.22em;
   color: #f3efe6;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
-.nav-brand { white-space: nowrap; display: inline-flex; align-items: center; gap: 10px; }
-.nav-logo { width: 30px; height: 30px; border-radius: 50%; display: block; }
 .nav-brand:hover { text-decoration: none; color: var(--kin-bright); }
+.nav-logo { width: 30px; height: 30px; border-radius: 50%; display: block; }
+
 .nav-links { display: flex; gap: 28px; list-style: none; }
 .nav-links a {
   color: #c9c4b8;
   font-size: 13px;
   letter-spacing: 0.14em;
+  padding: 6px 0;
 }
 .nav-links a:hover { color: var(--kin-bright); text-decoration: none; }
+.nav-links a[aria-current="page"] { color: var(--kin-bright); }
 
-/* ---------- ヒーロー ---------- */
+.nav-toggle { display: none; }
+
+/* 設立準備中の帯 */
+.notice-bar {
+  background: #14110c;
+  border-bottom: 1px solid rgba(240, 198, 74, 0.18);
+  color: #cdbf99;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-align: center;
+  padding: 8px 16px;
+  line-height: 1.6;
+}
+.notice-bar .star { color: var(--kin-bright); font-size: 9px; margin-right: 8px; opacity: 0.8; }
+
+/* ---------- ヒーロー（トップページ） ---------- */
 .hero {
   position: relative;
   background: var(--sumi);
   color: #f3efe6;
-  min-height: 78vh;
+  min-height: calc(100vh - var(--nav-h) - 36px);
+  min-height: calc(100svh - var(--nav-h) - 36px);
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 64px;
   overflow: hidden;
-  padding: 120px 24px 90px;
+  padding: 56px 24px 64px;
 }
 .hero::before {
-  /* ロゴ背後の淡い金のグロー */
   content: "";
   position: absolute;
-  left: 18%; top: 50%;
-  width: 560px; height: 560px;
+  left: 22%; top: 42%;
+  width: 640px; height: 640px;
   transform: translate(-30%, -50%);
   background: radial-gradient(circle, rgba(240, 198, 74, 0.10) 0%, transparent 62%);
   pointer-events: none;
 }
 .hero-inner {
   max-width: 1080px;
-  margin: 0 auto;
   width: 100%;
   display: flex;
   align-items: center;
@@ -113,7 +136,6 @@ a:focus-visible, button:focus-visible {
 .hero-logo {
   width: 250px;
   height: auto;
-  /* 黒背景のJPEGを暗背景に溶け込ませる */
   mix-blend-mode: screen;
   flex-shrink: 0;
 }
@@ -132,7 +154,6 @@ a:focus-visible, button:focus-visible {
 }
 .hero-sub .en { color: var(--kin-bright); }
 
-/* 縦書きの社是 — 本サイトの署名的要素 */
 .hero-tagline {
   writing-mode: vertical-rl;
   font-family: var(--serif);
@@ -147,7 +168,46 @@ a:focus-visible, button:focus-visible {
 }
 .hero-tagline .accent { color: var(--kin-bright); }
 
-/* 星火 — 微かな火花 */
+/* ヒーロー下部の入口ボタン */
+.hero-links {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1080px;
+}
+.hero-link {
+  flex: 1 1 0;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 64px;
+  padding: 12px 20px;
+  border: 1px solid rgba(240, 198, 74, 0.45);
+  color: #f3efe6;
+  font-family: var(--serif);
+  font-size: 17px;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+  transition: background 0.2s, border-color 0.2s;
+}
+.hero-link small {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  color: var(--kin-bright);
+  opacity: 0.85;
+}
+.hero-link:hover {
+  text-decoration: none;
+  background: rgba(240, 198, 74, 0.08);
+  border-color: var(--kin-bright);
+}
+
 .spark {
   position: absolute;
   color: var(--kin-bright);
@@ -156,9 +216,9 @@ a:focus-visible, button:focus-visible {
   pointer-events: none;
 }
 
-/* ---------- セクション共通 ---------- */
-.section { max-width: 880px; margin: 0 auto; padding: 92px 24px 0; }
-.section:last-of-type { padding-bottom: 100px; }
+/* ---------- 下層ページ共通 ---------- */
+.page { max-width: 880px; margin: 0 auto; padding: 72px 24px 0; width: 100%; }
+.page-narrow { max-width: 760px; }
 
 .section-label {
   display: flex;
@@ -178,30 +238,29 @@ a:focus-visible, button:focus-visible {
   letter-spacing: 0.14em;
   margin-bottom: 34px;
 }
+.lead { color: var(--grey); font-size: 14px; margin: -12px 0 28px; }
 
 /* ---------- 事業内容 ---------- */
-.business-list { list-style: none; border-top: 1px solid var(--hairline); }
+.business-list { list-style: none; border-top: 1px solid var(--hairline); counter-reset: biz; }
 .business-list li {
   border-bottom: 1px solid var(--hairline);
-  padding: 26px 4px;
+  padding: 22px 4px;
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 20px;
+  grid-template-columns: 56px 1fr;
+  gap: 12px;
   align-items: baseline;
+  counter-increment: biz;
 }
-.business-list .b-name {
+.business-list li::before {
+  content: counter(biz, decimal-leading-zero);
   font-family: var(--serif);
-  font-size: 17px;
+  color: var(--kin-deep);
   letter-spacing: 0.1em;
+  font-size: 15px;
 }
-.business-list .b-desc { color: var(--grey); font-size: 14px; }
-.business-note {
-  margin-top: 22px;
-  font-size: 13px;
-  color: var(--grey);
-}
+.business-note { margin-top: 22px; font-size: 13px; color: var(--grey); }
 
-/* ---------- 会社概要（定義リスト） ---------- */
+/* ---------- 会社概要 ---------- */
 .profile-table { border-top: 1px solid var(--hairline); }
 .profile-table .row {
   display: grid;
@@ -215,15 +274,13 @@ a:focus-visible, button:focus-visible {
   color: var(--kin-deep);
 }
 .profile-table dd { padding: 17px 4px; }
-
-/* 未確定項目のプレースホルダ表示 */
 .pending {
   color: var(--grey);
   border-bottom: 1px dotted #b5b0a5;
   font-size: 14px;
 }
 
-/* ---------- 公告・お問い合わせ ---------- */
+/* ---------- 枠付きブロック・お問い合わせ ---------- */
 .plain-block {
   border: 1px solid var(--hairline);
   background: #fff;
@@ -231,15 +288,15 @@ a:focus-visible, button:focus-visible {
   font-size: 14.5px;
 }
 .plain-block p + p { margin-top: 12px; }
-
+.plain-block .url { word-break: break-all; }
 .contact-mail {
   font-family: var(--serif);
   font-size: 19px;
   letter-spacing: 0.06em;
+  word-break: break-all;
 }
 
-/* ---------- 公告ページ専用 ---------- */
-.koukoku-body { max-width: 760px; margin: 0 auto; padding: 130px 24px 100px; }
+/* ---------- 電子公告ページ ---------- */
 .koukoku-item { margin-top: 40px; }
 .koukoku-item h2 {
   font-family: var(--serif);
@@ -262,42 +319,138 @@ a:focus-visible, button:focus-visible {
 .footer-inner {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 40px 24px;
+  padding: 36px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 16px 28px;
   flex-wrap: wrap;
 }
 .footer-brand { font-family: var(--serif); color: #cfc8b8; letter-spacing: 0.2em; }
-.footer-inner a { color: #8d867a; }
-.footer-inner a:hover { color: var(--kin-bright); }
+.footer-links { display: flex; flex-wrap: wrap; gap: 6px 22px; list-style: none; }
+.footer-links a { color: #8d867a; padding: 4px 0; display: inline-block; }
+.footer-links a:hover { color: var(--kin-bright); }
+.footer-copy { width: 100%; font-size: 11.5px; opacity: 0.8; }
+.hero + .site-footer, main + .site-footer { margin-top: 100px; }
+.home .site-footer { margin-top: 0; }
 
-/* ---------- レスポンシブ ---------- */
+/* ==========================================================================
+   スマートフォン・タブレット縦（〜820px）
+   ========================================================================== */
 @media (max-width: 820px) {
-  .hero { min-height: auto; padding: 110px 24px 70px; }
-  .hero-inner { flex-direction: column; align-items: flex-start; gap: 40px; }
-  .hero-main { flex-direction: column; align-items: flex-start; gap: 26px; }
-  .hero-logo { width: 190px; }
+  :root { --nav-h: 56px; }
+
+  /* ナビ：ハンバーガーメニュー（JS有効時） */
+  .nav-inner { padding: 0 20px; }
+  .nav-brand { font-size: 16px; letter-spacing: 0.16em; }
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 12px; letter-spacing: 0.06em; white-space: nowrap; }
+  .nav-logo { width: 28px; height: 28px; }
+
+  .js .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 48px; height: 48px;
+    margin-right: -10px;
+    padding: 0 12px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .js .nav-toggle span {
+    display: block;
+    height: 2px;
+    background: #e9e3d3;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .js .site-nav.open .nav-toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .js .site-nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .js .site-nav.open .nav-toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  .js .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: #0a0908;
+    border-bottom: 1px solid rgba(240, 198, 74, 0.25);
+    padding: 6px 20px 14px;
+  }
+  .js .site-nav.open .nav-links { display: flex; }
+  .js .nav-links a {
+    display: block;
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    padding: 15px 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .js .nav-links li:last-child a { border-bottom: 0; }
+
+  .notice-bar { font-size: 11.5px; letter-spacing: 0.08em; padding: 7px 12px; }
+
+  /* ヒーロー：中央そろえの縦積み（1画面に収まるよう画面の高さに合わせて縮める） */
+  .hero {
+    min-height: calc(100vh - var(--nav-h) - 34px);
+    min-height: calc(100svh - var(--nav-h) - 34px);
+    gap: 26px;
+    padding: 22px 24px 30px;
+    justify-content: center;
+  }
+  .hero::before {
+    left: 50%; top: 26%;
+    width: 520px; height: 520px;
+    transform: translate(-50%, -50%);
+  }
+  .hero-inner { flex-direction: column; align-items: center; gap: 16px; }
+  .hero-main { flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+  .hero-logo { width: min(52vw, 21svh, 220px); min-width: 120px; }
+  .hero-title { font-size: clamp(25px, 7.4vw, 32px); letter-spacing: 0.22em; padding-left: 0.22em; line-height: 1.45; }
+  .hero-sub { margin-top: 8px; font-size: 11.5px; letter-spacing: 0.26em; }
+
   .hero-tagline {
     writing-mode: horizontal-tb;
     height: auto;
-    border-right: none;
-    border-left: 1px solid rgba(240, 198, 74, 0.45);
-    padding: 4px 0 4px 18px;
+    border: 0;
+    padding: 16px 0 0;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 0.3em;
+    padding-left: 0.3em;
     line-height: 2;
+    position: relative;
   }
-  .business-list li, .profile-table .row { grid-template-columns: 1fr; gap: 4px; }
+  .hero-tagline::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    width: 36px; height: 1px;
+    transform: translateX(-50%);
+    background: rgba(240, 198, 74, 0.6);
+  }
+
+  .hero-links { flex-direction: column; align-items: center; gap: 10px; max-width: 340px; }
+  .hero-link { width: 100%; max-width: none; flex: none; min-height: 54px; padding: 8px 20px; font-size: 16px; }
+  .hero-link small { font-size: 9.5px; }
+
+  /* 下層ページ */
+  .page { padding-top: 52px; }
+  .business-list li { grid-template-columns: 40px 1fr; padding: 18px 2px; }
+  .profile-table .row { grid-template-columns: 1fr; gap: 0; }
   .profile-table dt { padding-bottom: 0; }
   .profile-table dd { padding-top: 4px; }
-  .nav-links { gap: 16px; }
-  .nav-links a { font-size: 12px; letter-spacing: 0.08em; }
+  .plain-block { padding: 24px 20px; }
+  .site-footer { margin-top: 72px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
 }
 
-/* 狭い画面ではナビの小ロゴを非表示（ナビが折り返さないように） */
-@media (max-width: 820px) {
-  .nav-logo { display: none; }
-  .nav-brand { font-size: 15px; letter-spacing: 0.12em; }
-  .nav-links { gap: 10px; }
-  .nav-links a { white-space: nowrap; font-size: 11px; letter-spacing: 0.02em; }
+@media (max-width: 380px) {
+  .nav-brand { font-size: 15px; letter-spacing: 0.1em; }
+  .hero-title { letter-spacing: 0.16em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }

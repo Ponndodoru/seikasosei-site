@@ -14,27 +14,33 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<script>document.documentElement.className+=' js';</script>
 </head>
-<body>
+<body class="">
 
 <nav class="site-nav" aria-label="メインナビゲーション">
   <div class="nav-inner">
     <a class="nav-brand" href="index.html"><img class="nav-logo" src="assets/logo-nav.png" alt="" width="30" height="30">星火創世</a>
-    <ul class="nav-links">
-      <li><a href="index.html#business">事業内容</a></li>
-      <li><a href="index.html#profile">会社概要</a></li>
-      <li><a href="koukoku.html">電子公告</a></li>
-      <li><a href="index.html#contact">お問い合わせ</a></li>
-    </ul>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="nav-links"><li><a href="business.html">事業内容</a></li><li><a href="company.html">会社概要</a></li><li><a href="koukoku.html" aria-current="page">電子公告</a></li><li><a href="contact.html">お問い合わせ</a></li></ul>
   </div>
 </nav>
+<!-- 【設立登記完了後に削除】設立準備中の帯（全5ページに同じ記述あり） -->
+<div class="notice-bar"><span class="star" aria-hidden="true">✦</span>2026年11月16日 設立予定（設立準備中）</div>
 
-<main class="koukoku-body">
+<main>
+<section class="page page-narrow">
   <p class="section-label"><span class="star" aria-hidden="true">✦</span>PUBLIC NOTICE</p>
   <h1 class="section-title">電子公告</h1>
 
   <div class="plain-block">
-    <p>当社の公告は、会社法第939条第1項第3号の規定に基づき、電子公告により行います。</p>
+    <p>当会社の公告方法は、電子公告とします。</p>
+    <p>公告掲載URL：<span class="url"><a href="https://seikasosei.com/koukoku.html">https://seikasosei.com/koukoku.html</a></span></p>
+    <p>ただし、事故その他やむを得ない事由によって電子公告による公告をすることができない場合は、官報に掲載する方法により行います。</p>
+    <p>（会社法第939条第1項第3号）</p>
+  </div>
+
+  <div class="plain-block" style="margin-top:20px;">
     <p>現在、公告すべき事項はありません。</p>
   </div>
 
@@ -45,7 +51,6 @@
     │ ・電子公告の場合は「要旨」ではなく「全文」（注記含む）の掲載が必要。   │
     │ ・掲載後は定時株主総会の終結日から5年間、継続して掲載し続けること。   │
     │ ・具体的な様式は税理士・司法書士に確認のうえ、PDFまたはHTMLで掲載。  │
-    │ 下のセクションはその置き場（現在は非表示ではなく案内文のみ）。        │
     └──────────────────────────────────────────────────────────┘
   -->
   <section class="koukoku-item">
@@ -55,14 +60,35 @@
       <p>決算公告は、定時株主総会の終結後、当ページに掲載いたします。</p>
     </div>
   </section>
+</section>
 </main>
 
 <footer class="site-footer">
   <div class="footer-inner">
     <span class="footer-brand">星火創世株式会社</span>
-    <span><a href="index.html">トップページ</a>　｜　© 2026 Seika Sosei Inc.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">トップページ</a></li>
+      <li><a href="business.html">事業内容</a></li>
+      <li><a href="company.html">会社概要</a></li>
+      <li><a href="koukoku.html">電子公告</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Seika Sosei Inc.</span>
   </div>
 </footer>
-
+<script>
+(function(){
+  var nav=document.querySelector('.site-nav'),btn=document.querySelector('.nav-toggle');
+  if(!nav||!btn)return;
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く');
+  });
+  nav.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
 </body>
 </html>

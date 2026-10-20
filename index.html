@@ -4,43 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>星火創世株式会社｜Seika Sosei Inc.</title>
-<meta name="description" content="星火創世株式会社の公式サイト。体験型エンターテインメントの企画・開発を行っています。会社概要・電子公告はこちら。">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="description" content="星火創世株式会社の公式サイトです。会社概要・事業内容・電子公告はこちら。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="星火創世株式会社">
 <meta property="og:title" content="星火創世株式会社｜Seika Sosei Inc.">
-<meta property="og:description" content="体験型エンターテインメントの企画・開発を行っています。">
+<meta property="og:description" content="星火創世株式会社の公式サイト。">
 <meta property="og:image" content="https://seikasosei.com/assets/ogp.jpg">
 <meta property="og:url" content="https://seikasosei.com/">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<script>document.documentElement.className+=' js';</script>
 </head>
-<body>
+<body class="home">
 
-<!-- ═══════════ ナビゲーション ═══════════ -->
 <nav class="site-nav" aria-label="メインナビゲーション">
   <div class="nav-inner">
-    <a class="nav-brand" href="#top"><img class="nav-logo" src="assets/logo-nav.png" alt="" width="30" height="30">星火創世</a>
-    <ul class="nav-links">
-      <li><a href="#business">事業内容</a></li>
-      <li><a href="#profile">会社概要</a></li>
-      <li><a href="koukoku.html">電子公告</a></li>
-      <li><a href="#contact">お問い合わせ</a></li>
-    </ul>
+    <a class="nav-brand" href="index.html"><img class="nav-logo" src="assets/logo-nav.png" alt="" width="30" height="30">星火創世</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="nav-links"><li><a href="business.html">事業内容</a></li><li><a href="company.html">会社概要</a></li><li><a href="koukoku.html">電子公告</a></li><li><a href="contact.html">お問い合わせ</a></li></ul>
   </div>
 </nav>
+<!-- 【設立登記完了後に削除】設立準備中の帯（全5ページに同じ記述あり） -->
+<div class="notice-bar"><span class="star" aria-hidden="true">✦</span>2026年11月16日 設立予定（設立準備中）</div>
 
-<!-- ═══════════ ヒーロー ═══════════ -->
+
 <header class="hero" id="top">
-  <!-- 星火 — 微かな火花（装飾） -->
-  <span class="spark" style="top:22%; left:8%;" aria-hidden="true">✦</span>
-  <span class="spark" style="top:70%; left:30%;" aria-hidden="true">✦</span>
-  <span class="spark" style="top:34%; right:34%;" aria-hidden="true">✦</span>
+  <span class="spark" style="top:12%; left:8%;" aria-hidden="true">✦</span>
+  <span class="spark" style="top:58%; left:14%;" aria-hidden="true">✦</span>
+  <span class="spark" style="top:30%; right:10%;" aria-hidden="true">✦</span>
 
   <div class="hero-inner">
     <div class="hero-main">
@@ -52,105 +49,41 @@
     </div>
     <p class="hero-tagline">一粒の<span class="accent">星火</span>が、<br>世界を<span class="accent">創</span>る。</p>
   </div>
+
+  <nav class="hero-links" aria-label="ページ案内">
+    <a class="hero-link" href="business.html">事業内容<small>BUSINESS</small></a>
+    <a class="hero-link" href="company.html">会社概要<small>COMPANY</small></a>
+    <a class="hero-link" href="contact.html">お問い合わせ<small>CONTACT</small></a>
+  </nav>
 </header>
 
-<main>
 
-<!-- ═══════════ 事業内容 ═══════════ -->
-<section class="section" id="business">
-  <p class="section-label"><span class="star" aria-hidden="true">✦</span>BUSINESS</p>
-  <h2 class="section-title">事業内容</h2>
-  <ul class="business-list">
-    <li>
-      <span class="b-name">体験型エンターテインメント</span>
-      <span class="b-desc">体験型エンターテインメント施設の企画・開発・運営</span>
-    </li>
-    <li>
-      <span class="b-name">コンテンツ・ソフトウェア</span>
-      <span class="b-desc">ゲームコンテンツおよびソフトウェアの企画・開発</span>
-    </li>
-    <li>
-      <span class="b-name">関連事業</span>
-      <span class="b-desc">前各事業に附帯・関連する一切の事業</span>
-    </li>
-  </ul>
-  <p class="business-note">※ 現在進行中のプロジェクトの詳細は、準備が整い次第、順次公開いたします。</p>
-</section>
-
-<!-- ═══════════ 会社概要 ═══════════ -->
-<section class="section" id="profile">
-  <p class="section-label"><span class="star" aria-hidden="true">✦</span>COMPANY</p>
-  <h2 class="section-title">会社概要</h2>
-
-  <dl class="profile-table">
-    <div class="row">
-      <dt>商号</dt>
-      <dd>星火創世株式会社</dd>
-    </div>
-    <div class="row">
-      <dt>英文表記</dt>
-      <dd>Seika Sosei Inc.</dd>
-    </div>
-    <div class="row">
-      <dt>代表者</dt>
-      <dd>代表取締役　劉　寧</dd>
-    </div>
-    <div class="row">
-      <dt>所在地</dt>
-      <dd>〒362-0064　埼玉県上尾市小敷谷806-13</dd>
-    </div>
-    <!-- 【設立登記完了後に記入】設立年月日（登記簿上の会社成立の日） -->
-    <div class="row">
-      <dt>設立</dt>
-      <dd><span class="pending">設立登記完了後に記載いたします</span></dd>
-    </div>
-    <!-- 【設立登記完了後に記入】資本金の額 -->
-    <div class="row">
-      <dt>資本金</dt>
-      <dd><span class="pending">設立登記完了後に記載いたします</span></dd>
-    </div>
-    <!-- 【設立登記完了後に記入】国税庁から指定される13桁の法人番号（登記後1〜2週間で公表） -->
-    <div class="row">
-      <dt>法人番号</dt>
-      <dd><span class="pending">設立登記完了後に記載いたします</span></dd>
-    </div>
-    <div class="row">
-      <dt>公告方法</dt>
-      <dd>電子公告（<a href="koukoku.html">公告ページはこちら</a>）</dd>
-    </div>
-  </dl>
-</section>
-
-<!-- ═══════════ 電子公告（入口） ═══════════ -->
-<section class="section" id="koukoku-link">
-  <p class="section-label"><span class="star" aria-hidden="true">✦</span>PUBLIC NOTICE</p>
-  <h2 class="section-title">電子公告</h2>
-  <div class="plain-block">
-    <p>当社の公告は、会社法の規定に基づき電子公告により行います。</p>
-    <p><a href="koukoku.html">電子公告ページを見る →</a></p>
-  </div>
-</section>
-
-<!-- ═══════════ お問い合わせ ═══════════ -->
-<section class="section" id="contact">
-  <p class="section-label"><span class="star" aria-hidden="true">✦</span>CONTACT</p>
-  <h2 class="section-title">お問い合わせ</h2>
-  <div class="plain-block">
-    <p>当社へのお問い合わせは、下記メールアドレスまでお願いいたします。</p>
-    <!-- 【任意】将来 info@seikasosei.com を開設した場合はこちらを差し替え -->
-    <p class="contact-mail"><a href="mailto:n-ryu@seikasosei.com">n-ryu@seikasosei.com</a></p>
-  </div>
-</section>
-
-</main>
-
-<!-- ═══════════ フッター ═══════════ -->
 <footer class="site-footer">
   <div class="footer-inner">
     <span class="footer-brand">星火創世株式会社</span>
-    <span><a href="koukoku.html">電子公告</a>　｜　© 2026 Seika Sosei Inc.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">トップページ</a></li>
+      <li><a href="business.html">事業内容</a></li>
+      <li><a href="company.html">会社概要</a></li>
+      <li><a href="koukoku.html">電子公告</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Seika Sosei Inc.</span>
   </div>
 </footer>
-
+<script>
+(function(){
+  var nav=document.querySelector('.site-nav'),btn=document.querySelector('.nav-toggle');
+  if(!nav||!btn)return;
+  btn.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く');
+  });
+  nav.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+  });
+})();
+</script>
 </body>
 </html>
